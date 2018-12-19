@@ -29,33 +29,24 @@
     </style>
   </head>
   <body>
-    <!-- <p align="right">
-      <input type="button" value="Add Data1" onclick="adddata1()" backgroundColor="#000"> <input type="button" value="Add Data2" onclick="adddata2()"> <input type="button" value="Add Data3" onclick="adddata3()">
-      <br/>
-      <input type="button" value="Delete1" onclick="clearcanvas1()"> <input type="button" value="Delete2" onclick="clearcanvas2()">  <input type="button" value="Delete3" onclick="clearcanvas3()">
-      <br/>
-    </p> -->
-
-    <div class="Menu">
-      <p align="right">
-        <input type="button" value="Add Data1" onclick="adddata1()" backgroundColor="#000"><br/>
-        <input type="button" value="Add Data2" onclick="adddata2()"><br/>
-        <input type="button" value="Add Data3" onclick="adddata3()"><br/>
-
-        <input type="button" value="Delete1" onclick="clearcanvas1()"> <input type="button" value="Delete2" onclick="clearcanvas2()">  <input type="button" value="Delete3" onclick="clearcanvas3()">
-        <br/>
-      </p>
+    <div class = "totalClass">
+        <div class="Menu">
+          <p align="right">
+            <input type="button" value="Add Data1" onclick="adddata1()" id="btn1" style="background-color:#eff7f9;"> <input type="button" value="Add Data2" onclick="adddata2()" id="btn2" style="background-color:#eff7f9;"> <input type="button" value="Add Data3" onclick="adddata3()" id="btn3" style="background-color:#eff7f9;">
+            <input type="button" value="Delete1" onclick="clearcanvas1()" id="btn_d1" style="background-color:#eff7f9;"> <input type="button" value="Delete2" onclick="clearcanvas2()" id="btn_d2" style="background-color:#eff7f9;"> <input type="button" value="Delete3" id="btn_d3" onclick="clearcanvas3()" style="background-color:#eff7f9;">
+            <br/>
+          </p>
+        </div>
+        <div class="container1">
+          <canvas id="myChart1" height="100px"></canvas>
+        </div>
+        <div class="container2">
+          <canvas id="myChart2"height="100px"></canvas>
+        </div>
+        <div class="container3">
+          <canvas id="myChart3"height="100px"></canvas>
+        </div>
     </div>
-    <div class="container1">
-      <canvas id="myChart1" height="100px"></canvas>
-    </div>
-    <div class="container2">
-      <canvas id="myChart2"height="100px"></canvas>
-    </div>
-    <div class="container3">
-      <canvas id="myChart3"height="100px"></canvas>
-    </div>
-
     <script>
 
       Chart.defaults.global.defaultFontFamily = 'Lato';
@@ -65,7 +56,7 @@
       // Chart.defaults.global.animation = false;
       // Chart.defaults.global.maintainAspectRatio = false;
 
-
+      ///메뉴바 고정
       $( document ).ready( function() {
         var jbOffset = $( '.Menu' ).offset();
         $( window ).scroll( function() {
@@ -77,6 +68,52 @@
           }
         });
       } );
+
+      //첫번째꺼 추가시 시선이동
+      $(document).ready(function(){
+        $("#btn1").on("click",function(event){
+          // 이동 버튼을 클릭시 pre 태그로 스크롤의 위치가 이동되도록 한다.
+
+          // 1. pre태그의 위치를 가지고 있는 객체를 얻어온다. => offset 객체
+          var offset = $("#myChart1").offset();
+          // offset은 절대 위치를 가져온다. offset.top을 통해 상단의 좌표를 가져온다.
+          // position은 부모를 기준으로한 상대위치를 가져온다.
+          $("html body").animate({scrollTop:0},500);
+        });
+      }); // end of ready()
+
+      //두번째꺼 추가시 시선이동
+      $(document).ready(function(){
+        $("#btn2").on("click",function(event){
+          var offset = $("#myChart2").offset();
+          $("html body").animate({scrollTop:offset.top},500);
+        });
+      });
+
+      //세번째꺼 추가시 시선이동
+      $(document).ready(function(){
+        $("#btn3").on("click",function(event){
+          var offset = $("#myChart3").offset();
+          $("html body").animate({scrollTop:offset.top},500);
+        });
+      });
+
+      $(document).ready(function(){
+        $("#btn_d1").on("click",function(event){
+          $("html body").animate({scrollTop:0},500);
+        });
+      });
+      $(document).ready(function(){
+        $("#btn_d2").on("click",function(event){
+          $("html body").animate({scrollTop:0},500);
+        });
+      });
+      $(document).ready(function(){
+        $("#btn_d3").on("click",function(event){
+          $("html body").animate({scrollTop:0},500);
+        });
+      });
+
 
 
 
@@ -98,6 +135,8 @@
               ctx = myChart3.getContext("2d");
           ctx.clearRect(0, 0, canvas.width, canvas.height);
       }
+
+
       function adddata1(){
         var myChart1 = document.getElementById('myChart1').getContext('2d');
 
@@ -160,6 +199,8 @@
             }
           }
         });
+
+
       }
       function adddata2(){
         var myChart2 = document.getElementById('myChart2').getContext('2d');
@@ -281,6 +322,8 @@
           }
         });
       }
+
+
     </script>
   </body>
 </html>
